@@ -1,0 +1,53 @@
+<!--modifiquemos el archivo anterior con 'mejoras', add elementos mediante funciones que defuleven JSX, el type(hasta ahora div), puede ser un elemento pintable como es el caso de la funcion que hemos definido (constenido) de JSX, implementa esto en el codigo: -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 3</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+            <!-- Llamamos a babel -->
+            <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+            
+            <script type='text/babel'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+
+                //Variable que vamos a usar para el ejercicio
+                const props = {
+                    clase: "msg",
+                    texto: "hola mundo desde props con el type como funcion..."
+                }
+                
+                //Funcion que vamos a pasar dentro del miDiv
+                //con destructuring de props como parametro
+                const contenido = ({clase, texto}) => <div className={clase} children = {texto}></div>
+                
+                
+                
+                const miDiv = (
+                    //con React.createElement que requeria como minimo 2 parametros si el segundo tambien contenia children
+                    //le pasamos type como la funcion pintadora y props como los parametros de dicha funcion anterior
+                    <div className="container"> 
+                        {React.createElement(contenido, props)}
+                        {React.createElement(contenido, {clase:"explicacion", texto: "ejemplo de los parametros que le llegan a este props, los parametrso de la funcion definida en el type"})}
+
+                    </div>
+                )
+  
+                ReactDOM.render(miDiv, rootElement);
+
+            </script>
+
+        </main>
+    </body>
+</html>

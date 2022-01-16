@@ -1,0 +1,54 @@
+<!--modifiquemos el archivo anterior con 'mejoras', los textos y clases pasan como variable en un spread operator-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 3</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+            <!-- Llamamos a babel -->
+            <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+            
+            <script type='text/babel'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+
+                //constantes para este ejercicio 
+                const className = "container";
+                const children = "hola mundo";
+                const props = { children, className };
+
+                //construir el div que tiene por children
+                // "hola mundo usando un spread de props
+                //paso como props el spread operator con las dos constantes requeridas
+                const miDiv = <div {...props}></div>
+
+                
+                    
+                ReactDOM.render(miDiv, rootElement);
+
+                //algo curioso y util 
+                // const children2 = (
+                //   <>  esta etiqueta se llama fragmen, envuelve etiquetas en nada y asi evita un error porque el contenido a de estar contenido
+                //     <span>hola</span>
+                //     <span>mundo</span>
+                //   </>
+                // );
+               
+            </script>
+
+        </main>
+    </body>
+</html>
+
+

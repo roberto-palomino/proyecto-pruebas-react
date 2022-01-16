@@ -1,0 +1,8 @@
+instalamso en la carpeta donde queramos tener el proyecto el comando desde la terminal para iniciar un StartedKit del seudo-framework de create-react-app.dev --> 
+npx create-react-app my-app (en mi app podemos poner el nombre que queramos )
+
+desde la terminal entramos con cd ./nombre de la app
+
+escrtibimos --> npm install react-scripts@latest
+
+luego abrimos la carpeta en visual 

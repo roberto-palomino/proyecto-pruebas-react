@@ -1,0 +1,46 @@
+<!--modifiquemos el archivo anterior con 'mejoras', los textos y clases pasan como variable (clase, palabra1, palabra2)-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 3</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+            <!-- Llamamos a babel -->
+            <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+            
+            <script type='text/babel'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+
+                const clase = 'container'
+                const palabra1 = 'hola'
+                const palabra2 = 'mundo'
+
+                //todo lo que va entre llaves se evalua 
+                const miDiv = 
+                    <div className = {clase}>
+                        <span children={palabra1}></span>  
+                        {' '}
+                        <span>{palabra2}</span>    
+                    </div>
+                    /* ojo lo que escribimos dentro de en este caso los spans no dejan de ser un children para react (aunque utilizemos babilon) como con el ejemplo de pepe, comparacion de solo react y react + babilon al final de este archivo */
+                    
+                ReactDOM.render(miDiv, rootElement);
+               
+            </script>
+
+        </main>
+    </body>
+</html>
+

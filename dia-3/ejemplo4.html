@@ -1,0 +1,77 @@
+
+<!--modifiquemos el archivo anterior con 'mejoras', primer contacto con componentes 
+
+Un componente no es mas que una funcion (definida con la primera letra en mayuscula), que recibe unas props y devuleve algo pintable (JSX) -->
+<!-- no entendi esta parte de lso componentes -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 3</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+            <!-- Llamamos a babel -->
+            <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+            
+            <script type='text/babel'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+
+                //Variable que vamos a usar para el ejercicio
+                const props = {
+                    clase: "msg",
+                    texto: "hola mundo desde props con el type como funcion..."
+                }
+                
+                //
+                const Contenido = (props) => {
+                    //const {clase, texto} = props
+                    return <div className={props.clase}>{props.children}</div>
+                }
+                
+                
+                const miDiv = (
+                    //entineod que era algo asi a la hora de crear elementos...
+                    <div className="container"> 
+                        <Contenido clase={props.clase}>Asi?, {props.texto}</Contenido>
+                    </div>
+                )
+                
+                //DESCOMENTAR UN ReactDOM u otro dependiendo de lo que queramos probar
+                //ReactDOM.render(miDiv, rootElement);
+
+
+                //vamos con otro ejemplo visto en clase sobre componentes a ver si asi ...
+                //le pasamos un componente a otro componente las props serian los atributos de la 'etiqueta html'
+
+                const rootElement2 = document.querySelector('#root')
+
+                const Welcome = (prop) => <h1 className={prop.class}> Hello, {prop.name}</h1>
+
+                const App = () => {
+                    return (
+                        <div>
+                            <Welcome class='claseSara' name='sara'/>
+                            <Welcome name='martin'/>    
+                            <Welcome name='sofia'/>    
+
+                        </div>
+                    )
+                }
+
+                ReactDOM.render(App(), rootElement2)
+
+            </script>
+
+        </main>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 2</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+            
+            
+            <script type='module'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+                //createElement recibe 3 parametros , el tipo de elemento(html), el prop, la clase en forma de objeto que puede ser objeto vacio, null o contener el 3 paramero 'children:lo que sea el children' y/o el children como 3 elemento, que puede ser un unico create element o un array con varios create element
+                const miDiv = 
+                    React.createElement('div', 
+                    {className: "container"},
+                        [
+                            React.createElement('span', null, 'Hello'),
+                            ' ', //puedes generar un espacio dentro los spans en este caso add un string con un espacio
+                            React.createElement('span', {}, 'World')
+                        ]
+                    );
+                
+                ReactDOM.render(miDiv, rootElement);
+               
+            </script>
+
+        </main>
+    </body>
+</html>

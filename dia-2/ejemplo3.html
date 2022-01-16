@@ -1,0 +1,71 @@
+<!-- vamos  a utilizar JSX (JavaScript XML), para ello necesitaremos la libreria babel
+esto sirve para utilizar una forma mas natural de utilizar react
+
+modifiquemos el archivo anterior como ejemplo -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 3</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+            <!-- Llamamos a babel -->
+            <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+            
+            <!-- creo es importante el typo del scrtipt ya que ahora al utilizzar la libreria babel a cambiado -->
+            <script type='text/babel'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+                //lo que antes era React.createElement ahora pasa a ser JSX , una especie de html, pero babel transforma esto a lo que teniamos en el ejemplo 2, a algo que lea la libreria react 
+                //esto se parece a HTML pero ojo que no es lo mismo, las palabras HTML clave como class estan reservadas, por eso aqui se llama className y asi con otros
+                //dos maneras de generar espacios, todo lo que este dentro de JSX entre {}, interpola JS, es decir lo evalua 
+                const miDiv = 
+                    <div className = 'container'>
+                        <span>Hello</span> <span children={'PEPE'}></span> 
+                        {' '}
+                        <span>World</span>    
+                    </div>
+                    /* ojo lo que escribimos dentro de en este caso los spans no dejan de ser un children para react (aunque utilizemos babilon) como con el ejemplo de pepe, comparacion de solo react y react + babilon al final de este archivo */
+                    
+                ReactDOM.render(miDiv, rootElement);
+               
+            </script>
+
+        </main>
+    </body>
+</html>
+
+
+
+<!-- 
+    EJEMPLO SENCILLO POR SI SE TE ATASCA EN EL FUTURO
+
+Para react->
+
+    const div = 
+        React.createElement(
+            'div',
+            {
+            color: blue, 
+            shadowSize:2
+            },
+            'Click Me'
+        )
+
+Para react con babilon, esto es lo mismo->
+    const div = 
+        <div color='blue' shadowSize={2}>     el dos va entre llaves para indicar que es un numero y no una string, creo y sino es al reves
+            Click Me
+        </div>
+
+-->

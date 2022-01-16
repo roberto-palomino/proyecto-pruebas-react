@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 1</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            <div id='root1'></div>
+            <div id='root2'></div>
+
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+            
+            <!-- Es importante el type que utilizrmos, en este caso usando node para el dom de navegador, utilizamos type=module -->
+            <script type='module'>
+                /* mi codigo va aqui  */
+
+
+                //Forma base sobre la que vamos a experimentar, requiere 3 parametros y llmar a la libreria de react (los dos scripts anteriores)
+                const miDiv = React.createElement('div', {className: "container"}, '"HELLO WORLD"');
+                ReactDOM.render(miDiv, document.getElementById("root"));
+                //ReactDOM.render(miDiv, document.querySelector("#root"));
+                    //es lo mismo la que prefieras 
+
+
+                //pasando el children (que es el 3 parametro en el caso anterior 'hello world', como parametro del objeto)
+                const rootElement = document.querySelector('#root1');
+                const divProps = React.createElement('div', {className: 'container', children:'Hello world'});
+                ReactDOM.render(divProps, rootElement);
+
+
+                //sin class(pero ojo requiere 3 parameros aun que sea el objeto vacio o un null)
+                const rootElement2 = document.querySelector('#root2');
+                const divSinClass = React.createElement('div', {}, '"Hello world sin class"');
+                //es lo mismo 
+                //const divSinClass = React.createElement('div', null, '"Hello world sin class"');
+
+                ReactDOM.render(divSinClass, rootElement2);
+
+
+                
+            </script>
+        </main>
+    </body>
+</html>
+

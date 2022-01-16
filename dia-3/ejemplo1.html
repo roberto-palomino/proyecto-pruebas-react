@@ -1,0 +1,43 @@
+<!--modifiquemos el archivo anterior con 'mejoras', add elementos mediante funciones que defuleven JSX, la funcion tendra dos parametros la className y el children-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Ejemlo 3</title>
+        
+    </head>
+    <body>
+        <main>
+            <div id='root'></div>
+            
+            <!--LLamamos a la libreria de react y especificamente solo a la de navegadores, dom -->
+            <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+
+            <!-- Llamamos a babel -->
+            <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+            
+            <script type='text/babel'>
+                /* mi codigo va aqui  */
+
+                const rootElement = document.querySelector('#root')
+
+                //Funcion que vamos a pasar dentro del miDiv
+                const contenido = (clase, texto) => <div className={clase} children = {texto}></div>
+
+                
+                const miDiv = (
+                    <div className="container"> 
+                       {contenido("msg", "hola mundo")}
+                       {contenido("msg", "Bye world")}
+                    </div>
+                );
+  
+                ReactDOM.render(miDiv, rootElement);
+
+            </script>
+
+        </main>
+    </body>
+</html>
