@@ -1,4 +1,5 @@
 import './Chat.css';
+import React, { Component, useState } from 'react';
 
 function Chat(props) {
   //   const date = new Date();
@@ -23,11 +24,29 @@ function Chat(props) {
       id: 3,
     },
   ];
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(e.target.elements.messageText.value);
+  };
+
+  /* const newMessage = {
+    id: 2,
+    author: 456317,
+    body: e.target.elements.messageText.value,
+    date: '2019-03-26T18:33:02',
+  };
+  console.log(newMessage); */
 
   return (
     <div className='main-container'>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='text'> Formulario:</label>
+        <input type='text' id='text' name='messageText' />
+        <button>Enviar</button>
+      </form>
+      <ClickCounter />
+      {/* <ClickCounter2 /> */}
       <Header fecha='01/04/2019-09:14:16' />
-
       {/* <Message name='joselito' text='mensaje 1' hora='22:14 pm' />
       <Message
       name='miguelito'
@@ -42,17 +61,41 @@ function Chat(props) {
         ))
 
         /*    messages.map(message => (
-              <Message
-              name={message.author}
-              text={message.body}
-              hora={message.date}
-              />
-              )) */
+          <Message
+          name={message.author}
+          text={message.body}
+          hora={message.date}
+          />
+          )) */
       }
       {/* <RemderAllMessage messages={messages} /> */}
+      {/* <Input /> */}
     </div>
   );
 }
+
+const ClickCounter = () => {
+  const [contador, setContador] = useState(0);
+  return (
+    <div>
+      <h1>Número de clicks: {contador}</h1>
+      <button
+        onClick={() => {
+          setContador(contador + 1);
+        }}
+      >
+        Sumar
+      </button>
+      <button
+        onClick={() => {
+          setContador(contador - 1);
+        }}
+      >
+        Restar
+      </button>
+    </div>
+  );
+};
 
 // FORMA UNO DE HACERLO:
 
@@ -107,5 +150,32 @@ function Avatar({ name }) {
     </div>
   );
 }
+
+/* function Input() {
+  return (
+    <div className='entrada'>
+      <label for='text'>Texto:</label>
+      <input type='text' id='text' />
+      <button>Enviar</button>
+    </div>
+  );
+} */
+
+/* const ClickCounter2 = ({ initValue }) => {
+  const [contador, setContador] = useState(initValue ?? 0);
+  const updateCounter = event => {
+    console.log('En la función de updateCounter', event);
+    setContador(contador + 1);
+    console.log('Contador después de setContador updateCounter', contador);
+  };
+
+  console.log('Valor del contador antes de return', contador);
+  return (
+    <div>
+      <h1>Número de clicks: {contador}</h1>
+      <button onClick={updateCounter}>Click!</button>
+    </div>
+  );
+}; */
 
 export default Chat;
