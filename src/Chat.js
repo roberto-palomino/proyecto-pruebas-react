@@ -1,10 +1,10 @@
 import './Chat.css';
-import React, { Component, useState } from 'react';
-
+import React, { useState, useRef } from 'react';
+import Header from './componentes/Header/Header';
+import Avatar from './componentes/Avatar/Avatar';
+import { ClickCounter } from './componentes/ClickCounter';
 function Chat(props) {
-  //   const date = new Date();
-
-  const messages = [
+  const messagesList = [
     {
       id: 1,
       author: 456317,
@@ -24,26 +24,49 @@ function Chat(props) {
       id: 3,
     },
   ];
+
+  // MUESTRA POR CONSOLA LO QUE SE INTRODUCE EN FORMULARIO:
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e.target.elements.messageText.value);
+    const consoleResponse = e.target.elements.messageText.value;
+    console.log(consoleResponse);
   };
 
-  /* const newMessage = {
-    id: 2,
-    author: 456317,
-    body: e.target.elements.messageText.value,
-    date: '2019-03-26T18:33:02',
+  const [messages, setMessages] = useState(messagesList);
+  const inputMessage = useRef('');
+
+  // AÑADE DENTRO DE UN NUEVO MESSAGE LO QUE SE INTRODUCE EN ENVIAR:
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    //const userMessage = e.target.elements.message.value; //Obtener elemento en el target del form
+    const userMessage = inputMessage.current.value; //Obtener elemento de la referencia
+    // e.target.elements.message.value = ''; // limpiar el input
+    inputMessage.current.value = ''; // limpiar el input
+    const newMessage = {
+      author: 456328, //author hardcoded -por ahora-
+      body: userMessage,
+      date: new Date().toISOString(),
+      id: 4, //id hardcoded => provoca error por consola
+    };
+    setMessages([...messages, newMessage]);
   };
-  console.log(newMessage); */
 
   return (
     <div className='main-container'>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='text'> Formulario:</label>
-        <input type='text' id='text' name='messageText' />
-        <button>Enviar</button>
-      </form>
+      {
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='text'> Formulario:</label>
+          <input type='text' id='text' name='messageText' />
+          <button>Enviar</button>
+        </form>
+      }
+      {
+        <form onSubmit={handleFormSubmit}>
+          <input type='text' name='message' id='mensaje' ref={inputMessage} />
+          <button>Enviar</button>
+        </form>
+      }
       <ClickCounter />
       {/* <ClickCounter2 /> */}
       <Header fecha='01/04/2019-09:14:16' />
@@ -74,29 +97,6 @@ function Chat(props) {
   );
 }
 
-const ClickCounter = () => {
-  const [contador, setContador] = useState(0);
-  return (
-    <div>
-      <h1>Número de clicks: {contador}</h1>
-      <button
-        onClick={() => {
-          setContador(contador + 1);
-        }}
-      >
-        Sumar
-      </button>
-      <button
-        onClick={() => {
-          setContador(contador - 1);
-        }}
-      >
-        Restar
-      </button>
-    </div>
-  );
-};
-
 // FORMA UNO DE HACERLO:
 
 /* const Message = ({ name, text, hora }) => {
@@ -113,7 +113,7 @@ const ClickCounter = () => {
 
 // FORMA DOS DE HACERLO (MEJOR):
 
-const Message2 = ({ message }) => {
+export const Message2 = ({ message }) => {
   const { author, date, body } = message;
   //   const date =
   return (
@@ -128,54 +128,5 @@ const Message2 = ({ message }) => {
     </div>
   );
 };
-
-// PARA PINTAR TODO EL ARRAY:
-
-/* const RemderAllMessage = props => {
-  const allMessages = props.messages.map(message => (
-    <Message2 message={message} />
-  ));
-  return allMessages;
-}; */
-
-function Header({ fecha }) {
-  return <div className='header'>{fecha}</div>;
-}
-
-function Avatar({ name }) {
-  return (
-    <div className='avatar'>
-      <img src='/avatars/456317.png' alt='imagen de usuario' />
-      <span>{name}</span>
-    </div>
-  );
-}
-
-/* function Input() {
-  return (
-    <div className='entrada'>
-      <label for='text'>Texto:</label>
-      <input type='text' id='text' />
-      <button>Enviar</button>
-    </div>
-  );
-} */
-
-/* const ClickCounter2 = ({ initValue }) => {
-  const [contador, setContador] = useState(initValue ?? 0);
-  const updateCounter = event => {
-    console.log('En la función de updateCounter', event);
-    setContador(contador + 1);
-    console.log('Contador después de setContador updateCounter', contador);
-  };
-
-  console.log('Valor del contador antes de return', contador);
-  return (
-    <div>
-      <h1>Número de clicks: {contador}</h1>
-      <button onClick={updateCounter}>Click!</button>
-    </div>
-  );
-}; */
 
 export default Chat;
